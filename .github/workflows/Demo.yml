@@ -22,15 +22,11 @@ jobs:
         with:
           gradle-version: current
           arguments: build
-          
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       
       - name: Upload APK
-        uses: actions/upload-artifact@v2.2.3
+        uses: ncipollo/release-action@v1.8.4
         with:
+          token: ${{ secrets.RELEASE_TOKEN }}
           name: Release
-          path: app/build/outputs/apk/debug/app-debug.apk
+          artifact: app/build/outputs/apk/debug/app-debug.apk
             
