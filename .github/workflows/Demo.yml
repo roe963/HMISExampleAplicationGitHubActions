@@ -14,8 +14,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2.0.0
         with: 
+          distribution: adopt
           java-version: 11
-          distribution: jdk
 
       - name: Build APK
         uses: eskatos/gradle-command-action@v1.3.3
