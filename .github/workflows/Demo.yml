@@ -1,0 +1,29 @@
+name: Demo
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v2.0.0
+        with: 
+          java-version: 11
+
+      - name: Build APK
+        uses: eskatos/gradle-command-action@v1.3.3
+        with:
+          arguments: build
+          
+      - name: Upload APK
+        uses: actions/upload-artifact@v2.2.3
+        with:
+          name: Release
+          path: app/build/outputs/apk/debug/app-debug.apk
+            
