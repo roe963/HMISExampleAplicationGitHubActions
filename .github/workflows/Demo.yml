@@ -6,7 +6,7 @@ on:
     tags: '*'
 
 jobs:
-  build:
+  test, build and release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
