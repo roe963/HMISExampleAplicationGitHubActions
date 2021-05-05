@@ -23,6 +23,11 @@ jobs:
           gradle-version: current
           arguments: build
           
+      - name: Create a Release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+      
       - name: Upload APK
         uses: actions/upload-artifact@v2.2.3
         with:
