@@ -3,6 +3,7 @@ name: Demo
 on:
   push:
     branches: master
+    tags: '*'
 
 jobs:
   build:
@@ -18,7 +19,7 @@ jobs:
           webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
           color: "#48f442"
           username: "GitHub Bot"
-          message: "A new commit has been pushed with custom color."
+          message: "New release: https://github.com/roe963/HMISExampleAplicationGitHubActions/releases"
       
       - name: Set up JDK
         uses: actions/setup-java@v2.0.0
@@ -36,6 +37,6 @@ jobs:
         uses: ncipollo/release-action@v1.8.4
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
-          tag: Release
+          tag: release2
           artifacts: app/build/outputs/apk/debug/app-debug.apk
             
