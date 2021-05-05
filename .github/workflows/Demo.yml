@@ -3,7 +3,6 @@ name: Demo
 on:
   push:
     branches: master
-    tags: '*'
 
 jobs:
   build:
@@ -28,6 +27,6 @@ jobs:
         uses: ncipollo/release-action@v1.8.4
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
-          name: Release
+          tag: Release
           artifacts: app/build/outputs/apk/debug/app-debug.apk
             
