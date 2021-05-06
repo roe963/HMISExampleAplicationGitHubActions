@@ -40,7 +40,7 @@ jobs:
 #           arguments: build
           
       - name: Build APK
-        run: ./gradlew build
+        run: ./gradlew assembleDebug
       
       - name: Upload APK
         uses: ncipollo/release-action@v1.8.4
