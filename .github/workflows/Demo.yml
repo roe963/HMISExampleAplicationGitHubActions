@@ -2,7 +2,7 @@ name: Demo
 
 on:
   push:
-    branches: master
+#     branches: master
     tags: '*'
 
 jobs:
@@ -18,11 +18,8 @@ jobs:
           distribution: adopt
           java-version: 11
 
-      - name: Run Kotlin Linter
-        run: ./gradlew ktlintStagingDebugCheck
-
       - name: Run Unit Tests
-        run: ./gradlew testStagingDebugUnitTest
+        run: ./gradlew test
 
   build-release:
     runs-on: ubuntu-latest
@@ -36,17 +33,20 @@ jobs:
           distribution: adopt
           java-version: 11
 
+#       - name: Build APK
+#         uses: eskatos/gradle-command-action@v1.3.3
+#         with:
+#           gradle-version: current
+#           arguments: build
+          
       - name: Build APK
-        uses: eskatos/gradle-command-action@v1.3.3
-        with:
-          gradle-version: current
-          arguments: build
+        run: ./gradlew assembleDebug
       
       - name: Upload APK
         uses: ncipollo/release-action@v1.8.4
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
-          tag: release
+#           tag: release
           artifacts: app/build/outputs/apk/debug/app-debug.apk
             
       - name: Send message
