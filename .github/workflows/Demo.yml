@@ -6,7 +6,25 @@ on:
     tags: '*'
 
 jobs:
-  test-build-release:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2.0.0
+        with:
+          distribution: adopt
+          java-version: 11
+
+      - name: Run Kotlin Linter
+        run: ./gradlew ktlintStagingDebugCheck
+
+      - name: Run Unit Tests
+        run: ./gradlew testStagingDebugUnitTest
+
+  build&release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -31,7 +49,7 @@ jobs:
           # tag: release
           artifacts: app/build/outputs/apk/debug/app-debug.apk
             
-      - name: send message
+      - name: Send message
         uses: appleboy/discord-action@master
         with:
           webhook_id: ${{ secrets.WEBHOOK_ID }}
