@@ -2,7 +2,7 @@ name: Demo
 
 on:
   push:
-    # branches: master
+    branches: master
     tags: '*'
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
       - name: Run Unit Tests
         run: ./gradlew testStagingDebugUnitTest
 
-  build&release:
+  build-release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -46,7 +46,7 @@ jobs:
         uses: ncipollo/release-action@v1.8.4
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
-          # tag: release
+          tag: release
           artifacts: app/build/outputs/apk/debug/app-debug.apk
             
       - name: Send message
