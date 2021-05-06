@@ -24,7 +24,7 @@ jobs:
       - name: Run Unit Tests
         run: ./gradlew testStagingDebugUnitTest
 
-  build&release:
+  build and release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
